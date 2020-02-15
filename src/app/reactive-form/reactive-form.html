@@ -1,4 +1,53 @@
 <p>reactive-form works!</p>
-<div class="react-container">
-  <input type="text" [formControl]="firstNameControl" />
-</div>
+
+<!-- <form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Favorite food</mat-label>
+    <input matInput placeholder="Ex. Pizza" value="Sushi" />
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Leave a comment</mat-label>
+    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+  </mat-form-field>
+</form> -->
+
+<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+  <fieldset formGroupName="user">
+    <label>
+      User Name:
+      <input type="text" formControlName="userName" required />
+    </label>
+    <br />
+
+    <label>
+      First Name:
+      <input type="text" formControlName="firstName" />
+    </label>
+    <br />
+
+    <label>
+      Last Name:
+      <input type="text" formControlName="lastName" />
+    </label>
+    <br />
+  </fieldset>
+
+  <label>
+    e-mail:
+    <input type="email" formControlName="email" />
+  </label>
+
+  <fieldset formGroupName="pass">
+    <label for="">
+      <input type="password" formControlName="password" />
+    </label>
+    <br />
+
+    <label for="">
+      <input type="password" formControlName="repeatPass" />
+    </label>
+  </fieldset>
+
+  <button type="submit" [disabled]="!reactiveForm.valid">Submit</button>
+</form>
