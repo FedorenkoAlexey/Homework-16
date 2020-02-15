@@ -4,3 +4,7 @@
 /* fieldset {
   border: none;
 } */
+
+input.ng-touched.ng-invalid {
+  border-color: red;
+}

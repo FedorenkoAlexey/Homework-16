@@ -2,23 +2,31 @@
 
 <!-- <form class="example-form">
   <mat-form-field class="example-full-width">
-    <mat-label>Favorite food</mat-label>
-    <input matInput placeholder="Ex. Pizza" value="Sushi" />
+    <mat-label>User Name</mat-label>
+    <input matInput placeholder="Ivan" />
   </mat-form-field>
-
-  <mat-form-field class="example-full-width">
-    <mat-label>Leave a comment</mat-label>
-    <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
-  </mat-form-field>
-</form> -->
+</form>
+<br /> -->
 
 <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
   <fieldset formGroupName="user">
     <label>
       User Name:
-      <input type="text" formControlName="userName" required />
+      <input
+        type="text"
+        #user
+        formControlName="userName"
+        pattern="^[0-9a-zA-Z]*$"
+      />
     </label>
     <br />
+    <div
+      *ngIf="this.reactiveForm.controls.user.invalid
+    && (this.reactiveForm.controls.user.dirty
+    || this.reactiveForm.controls.user.touched)"
+    >
+      user
+    </div>
 
     <label>
       First Name:
@@ -35,12 +43,20 @@
 
   <label>
     e-mail:
-    <input type="email" formControlName="email" />
+    <input
+      type="email"
+      formControlName="email"
+      pattern="^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$"
+    />
   </label>
+  <br />
+  <div *ngIf="this.reactiveForm.controls.email.invalid">
+    222
+  </div>
 
   <fieldset formGroupName="pass">
     <label for="">
-      <input type="password" formControlName="password" />
+      <input type="password" formControlName="password" required />
     </label>
     <br />
 
@@ -48,6 +64,30 @@
       <input type="password" formControlName="repeatPass" />
     </label>
   </fieldset>
+  <br />
+
+  <label>
+    Sex:
+    <input type="radio" formControlName="sex" value="male" />
+    <input type="radio" formControlName="sex" value="female" />
+  </label>
+  <br />
+
+  <label for="region">
+    <select formControlName="region" id="region">
+      <option
+        *ngFor="let region of regions"
+        [value]="region.name"
+        placeholder="Select a Region"
+        >{{region.name}}</option
+      >
+    </select>
+  </label>
+  <br />
+
+  <input type="checkbox" formControlName="sendEmail" />
+  <span>Send me email</span>
+  <br />
 
   <button type="submit" [disabled]="!reactiveForm.valid">Submit</button>
 </form>

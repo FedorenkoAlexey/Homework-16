@@ -1,5 +1,10 @@
 import { Component, OnInit, InjectionToken } from "@angular/core";
-import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators
+} from "@angular/forms";
 
 @Component({
   selector: "app-reactive-form",
@@ -7,19 +12,18 @@ import { FormControl, FormGroup, FormBuilder } from "@angular/forms";
   styleUrls: ["./reactive-form.css"]
 })
 export class ReactiveFormComponent implements OnInit {
-  MAT_INPUT_VALUE_ACCESSOR: InjectionToken<{ value: any }>;
-  // constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) {}
   reactiveForm: FormGroup;
-
-  // reactiveForm = this.fb.group({
-  //   userName: [],
-  //   firstName: [],
-  //   lastName: [],
-  //   email: []
-  // });
+  regions: Array<any> = [
+    { id: 1, name: "Kyiv" },
+    { id: 2, name: "Khyrkov" },
+    { id: 3, name: "Cherkasy" },
+    { id: 4, name: "Other" }
+  ];
 
   onSubmit() {
-    console.warn(this.reactiveForm.value);
+    const controls = this.reactiveForm.controls;
+    console.warn(this.reactiveForm.value, controls);
   }
 
   ngOnInit() {
@@ -28,23 +32,20 @@ export class ReactiveFormComponent implements OnInit {
     //   console.log(this.firstNameControl)
     // );
 
-    // this.reactiveForm = new FormGroup({
-    //   userName: new FormControl("user"),
-    //   firstName: new FormControl("F-N"),
-    //   lastName: new FormControl("L-N")
-    // });
-
-    this.reactiveForm = new FormGroup({
-      user: new FormGroup({
-        userName: new FormControl("user"),
-        firstName: new FormControl("F-N"),
-        lastName: new FormControl("L-N")
+    this.reactiveForm = this.fb.group({
+      user: this.fb.group({
+        userName: ["", Validators.required],
+        firstName: [""],
+        lastName: [""]
       }),
-      email: new FormControl(""),
-      pass: new FormGroup({
-        password: new FormControl(""),
-        repeatPass: new FormControl("")
-      })
+      email: [""],
+      pass: this.fb.group({
+        password: ["", Validators.minLength(10)],
+        repeatPass: [""]
+      }),
+      sex: [""],
+      region: [""],
+      sendEmail: [""]
     });
   }
 }
