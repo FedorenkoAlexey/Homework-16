@@ -3,91 +3,126 @@
 <!-- <form class="example-form">
   <mat-form-field class="example-full-width">
     <mat-label>User Name</mat-label>
-    <input matInput placeholder="Ivan" />
+    <input matInput formControlName="userName" placeholder="Ivan" />
   </mat-form-field>
 </form>
 <br /> -->
 
-<form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
-  <fieldset formGroupName="user">
-    <label>
-      User Name:
-      <input
-        type="text"
-        #user
-        formControlName="userName"
-        pattern="^[0-9a-zA-Z]*$"
-      />
-    </label>
-    <br />
-    <div
-      *ngIf="this.reactiveForm.controls.user.invalid
-    && (this.reactiveForm.controls.user.dirty
-    || this.reactiveForm.controls.user.touched)"
-    >
-      user
-    </div>
+<div class="react-container">
+  <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+    <fieldset formGroupName="user">
+      <mat-form-field class="example-full-width">
+        <mat-label>User Name</mat-label>
+        <input
+          #user
+          matInput
+          formControlName="userName"
+          placeholder="You Nick"
+        />
+      </mat-form-field>
 
-    <label>
-      First Name:
-      <input type="text" formControlName="firstName" />
-    </label>
-    <br />
-
-    <label>
-      Last Name:
-      <input type="text" formControlName="lastName" />
-    </label>
-    <br />
-  </fieldset>
-
-  <label>
-    e-mail:
-    <input
-      type="email"
-      formControlName="email"
-      pattern="^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$"
-    />
-  </label>
-  <br />
-  <div *ngIf="this.reactiveForm.controls.email.invalid">
-    222
-  </div>
-
-  <fieldset formGroupName="pass">
-    <label for="">
-      <input type="password" formControlName="password" required />
-    </label>
-    <br />
-
-    <label for="">
-      <input type="password" formControlName="repeatPass" />
-    </label>
-  </fieldset>
-  <br />
-
-  <label>
-    Sex:
-    <input type="radio" formControlName="sex" value="male" />
-    <input type="radio" formControlName="sex" value="female" />
-  </label>
-  <br />
-
-  <label for="region">
-    <select formControlName="region" id="region">
-      <option
-        *ngFor="let region of regions"
-        [value]="region.name"
-        placeholder="Select a Region"
-        >{{region.name}}</option
+      <div
+        class="field-err"
+        *ngIf="reactiveForm.controls.user.controls.userName.invalid
+                && (reactiveForm.controls.user.controls.userName.dirty
+                || reactiveForm.controls.user.controls.userName.touched)"
       >
-    </select>
-  </label>
-  <br />
+        error
+      </div>
 
-  <input type="checkbox" formControlName="sendEmail" />
-  <span>Send me email</span>
-  <br />
+      <mat-form-field class="example-full-width">
+        <mat-label>First Name</mat-label>
+        <input #user matInput formControlName="firstName" placeholder="Ivan" />
+      </mat-form-field>
 
-  <button type="submit" [disabled]="!reactiveForm.valid">Submit</button>
-</form>
+      <mat-form-field class="example-full-width">
+        <mat-label>Last Name</mat-label>
+        <input #user matInput formControlName="lastName" placeholder="Ivanov" />
+      </mat-form-field>
+    </fieldset>
+
+    <mat-form-field class="example-full-width, mail-field">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        formControlName="email"
+        placeholder="Ex. pat@example.com"
+      />
+      <mat-error
+        *ngIf="reactiveForm.hasError('email') && !reactiveForm.hasError('required')"
+      >
+        Please enter a valid email address
+      </mat-error>
+      <mat-error class="field-err" *ngIf="reactiveForm.controls.email.errors">
+        Email is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <fieldset formGroupName="pass">
+      <mat-form-field class="example-full-width">
+        <mat-label>Password</mat-label>
+        <input
+          type="password"
+          matInput
+          formControlName="password"
+          placeholder="Enter password"
+        />
+      </mat-form-field>
+
+      <div *ngIf="passChild.controls.password.dirty">
+        <div
+          class="field-err"
+          *ngIf="passChild.controls.password.errors?.minlength"
+        >
+          Password must be at least 10 characters
+        </div>
+      </div>
+      <br />
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Repeat Password</mat-label>
+        <input
+          type="password"
+          matInput
+          formControlName="repeatPass"
+          placeholder="Confirm password"
+        />
+      </mat-form-field>
+      <div *ngIf="passChild.controls.repeatPass.dirty">
+        <div
+          class="field-err"
+          *ngIf="passChild.controls.repeatPass.errors?.incorrect"
+        >
+          Password no Matc
+        </div>
+      </div>
+    </fieldset>
+    <br />
+
+    <label id="example-radio-group-label"></label>
+    <mat-radio-group formControlName="sex" class="example-radio-group">
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+    </mat-radio-group>
+    <br />
+
+    <mat-form-field class="region">
+      <mat-label>Select region</mat-label>
+      <mat-select formControlName="region">
+        <mat-option *ngFor="let region of regions" [value]="region.name">
+          {{region.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+
+    <input type="checkbox" formControlName="sendEmail" />
+    <span>Send me email</span>
+    <br />
+    <!-- <button (click)="consol()">!!!!!!!!</button> -->
+
+    <button class="btn-form" type="submit" [disabled]="!reactiveForm.valid">
+      Submit
+    </button>
+  </form>
+</div>

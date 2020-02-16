@@ -6,6 +6,8 @@ import { ReactiveFormComponent } from "../reactive-form/reactive-form.component"
 import { MatInputModule } from "@angular/material/input";
 import { MatMenuModule } from "@angular/material/menu";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { MatSelectModule } from "@angular/material/select";
+import { MatRadioModule } from "@angular/material/radio";
 import {
   ErrorStateMatcher,
   ShowOnDirtyErrorStateMatcher
@@ -19,7 +21,9 @@ import {
     ReactiveFormsModule,
     MatInputModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatSelectModule,
+    MatRadioModule
   ],
   exports: [ReactiveFormComponent, MatInputModule],
   providers: [

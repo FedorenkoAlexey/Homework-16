@@ -1,10 +1,8 @@
-import { Component, OnInit, InjectionToken } from "@angular/core";
-import {
-  FormControl,
-  FormGroup,
-  FormBuilder,
-  Validators
-} from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+// import { regions } from "../regions-data";
+import { Region } from "../regions";
+import { MustMatch } from "./validation/confirm-pass";
 
 @Component({
   selector: "app-reactive-form",
@@ -14,38 +12,59 @@ import {
 export class ReactiveFormComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
   reactiveForm: FormGroup;
-  regions: Array<any> = [
+
+  regions: Region[] = [
     { id: 1, name: "Kyiv" },
     { id: 2, name: "Khyrkov" },
     { id: 3, name: "Cherkasy" },
     { id: 4, name: "Other" }
   ];
 
+  get control() {
+    return this.reactiveForm.controls;
+  }
+  get passChild() {
+    return this.reactiveForm.controls.pass;
+  }
+
   onSubmit() {
-    const controls = this.reactiveForm.controls;
-    console.warn(this.reactiveForm.value, controls);
+    console.warn(this.reactiveForm.value);
+    this.reactiveForm.reset();
+  }
+
+  consol() {
+    console.warn(this.reactiveForm.controls.pass);
   }
 
   ngOnInit() {
-    // this.firstNameControl = new FormControl();
-    // this.firstNameControl.valueChanges.subscribe(() =>
-    //   console.log(this.firstNameControl)
-    // );
-
-    this.reactiveForm = this.fb.group({
-      user: this.fb.group({
-        userName: ["", Validators.required],
-        firstName: [""],
-        lastName: [""]
-      }),
-      email: [""],
-      pass: this.fb.group({
-        password: ["", Validators.minLength(10)],
-        repeatPass: [""]
-      }),
-      sex: [""],
-      region: [""],
-      sendEmail: [""]
-    });
+    this.reactiveForm = this.fb.group(
+      {
+        user: this.fb.group({
+          userName: [
+            "",
+            [Validators.required, Validators.pattern("^[0-9a-zA-Z]*$")]
+          ],
+          firstName: [
+            "",
+            [Validators.required, Validators.pattern("^[0-9a-zA-Z]*$")]
+          ],
+          lastName: [
+            "",
+            [Validators.required, Validators.pattern("^[0-9a-zA-Z]*$")]
+          ]
+        }),
+        email: ["", [Validators.required, Validators.email]],
+        pass: this.fb.group({
+          password: ["", Validators.minLength(10)],
+          repeatPass: [""]
+        }),
+        sex: [""],
+        region: [""],
+        sendEmail: [""]
+      },
+      {
+        validators: MustMatch
+      }
+    );
   }
 }
