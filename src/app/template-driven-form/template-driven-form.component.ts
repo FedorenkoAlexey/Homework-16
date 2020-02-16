@@ -22,8 +22,9 @@ export class TemplateDrivenFormComponent implements OnInit {
     sendEmail: false
   };
 
-  onSubmit() {
-    console.log("2");
+  onSubmit(form: NgForm) {
+    console.log(form.value);
+    form.resetForm("");
   }
 
   ngOnInit() {}

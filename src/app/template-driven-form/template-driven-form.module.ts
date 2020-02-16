@@ -5,6 +5,7 @@ import { TemplateDrivenFormComponent } from "./template-driven-form.component";
 import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
+import { MatCheckboxModule } from "@angular/material/checkbox";
 
 @NgModule({
   declarations: [TemplateDrivenFormComponent],
@@ -13,7 +14,8 @@ import { MatSelectModule } from "@angular/material/select";
     FormsModule,
     MatInputModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatCheckboxModule
   ],
   exports: [TemplateDrivenFormComponent],
   providers: [],

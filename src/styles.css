@@ -10,8 +10,28 @@ body {
   background-color: rgb(75, 116, 165);
 }
 
+.active {
+  color: white;
+  /* background-color: rgb(1, 83, 5); */
+}
+
+.head {
+  display: flex;
+  width: 500px;
+  justify-content: space-around;
+  padding-right: 50px;
+  margin: 0 0 30px 100px;
+}
+.head a {
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: rgb(33, 165, 206);
+  /* color: #000; */
+}
+
 .btn-form {
-  margin-top: 20px;
+  margin: 20px 0 0 20px;
   position: relative;
   display: inline-block;
   width: 10em;

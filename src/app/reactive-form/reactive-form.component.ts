@@ -29,7 +29,7 @@ export class ReactiveFormComponent implements OnInit {
 
   onSubmit() {
     console.warn(this.reactiveForm.value);
-    this.reactiveForm.reset();
+    this.reactiveForm.reset("");
   }
 
   consol() {
@@ -56,10 +56,10 @@ export class ReactiveFormComponent implements OnInit {
         email: ["", [Validators.required, Validators.email]],
         pass: this.fb.group({
           password: ["", Validators.minLength(10)],
-          repeatPass: [""]
+          repeatPass: ["", Validators.required]
         }),
         sex: [""],
-        region: [""],
+        region: ["", Validators.required],
         sendEmail: [""]
       },
       {

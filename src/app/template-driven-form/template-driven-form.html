@@ -1,10 +1,5 @@
-<!-- [(ngModel)]="data.userName"
-required
-pattern="^[0-9a-zA-Z]*$"
-#name="ngModel"
-name="userName" -->
 <div class="driv-container">
-  <form (ngSubmit)="onSubmit()">
+  <form #form="ngForm" (ngSubmit)="onSubmit(form)">
     <mat-form-field>
       <mat-label>User name</mat-label>
       <input
@@ -127,7 +122,14 @@ name="userName" -->
       Required field
     </div>
 
-    <button class="btn-form" type="submit">
+    <div class="send-mail">
+      <mat-checkbox [(ngModel)]="data.sendEmail" name="sendEmail"
+        >Send me Email!
+      </mat-checkbox>
+    </div>
+    <br />
+
+    <button class="btn-form" type="submit" [disabled]="form.invalid">
       Submit
     </button>
   </form>
