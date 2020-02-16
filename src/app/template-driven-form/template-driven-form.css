@@ -1,0 +1,24 @@
+.driv-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 20%;
+  padding-left: 80px;
+  width: 280px;
+  height: 700px;
+  /* border: 1px solid blue; */
+  box-shadow: 5px 5px 10px rgba(0, 1, 6, 0.5), -3px -3px 10px rgba(0, 1, 6, 0.5);
+}
+
+div.field-err {
+  min-height: 15px;
+  width: auto;
+  font-size: 12px;
+  margin-top: -15px;
+  color: rgb(187, 0, 0);
+  /* border: 1px solid rgb(4, 4, 87); */
+}
+.region {
+  margin-top: 20px;
+}

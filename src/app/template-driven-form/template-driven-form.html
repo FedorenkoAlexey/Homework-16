@@ -1,1 +1,134 @@
-<p>template-driven-form works!</p>
+<!-- [(ngModel)]="data.userName"
+required
+pattern="^[0-9a-zA-Z]*$"
+#name="ngModel"
+name="userName" -->
+<div class="driv-container">
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>User name</mat-label>
+      <input
+        matInput
+        required
+        pattern="^[0-9a-zA-Z]*$"
+        [(ngModel)]="data.userName"
+        name="userName"
+        #username="ngModel"
+      />
+    </mat-form-field>
+    <div class="field-err" *ngIf="username.errors?.pattern">
+      Wrong symbol
+    </div>
+
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input
+        matInput
+        required
+        pattern="^[0-9a-zA-Z]*$"
+        [(ngModel)]="data.firstName"
+        name="firstName"
+        #firstname="ngModel"
+      />
+    </mat-form-field>
+    <div class="field-err" *ngIf="firstname.errors?.pattern">
+      Wrong symbol
+    </div>
+
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input
+        matInput
+        required
+        pattern="^[0-9a-zA-Z]*$"
+        [(ngModel)]="data.lastName"
+        name="lastName"
+        #lastname="ngModel"
+      />
+    </mat-form-field>
+    <div class="field-err" *ngIf="lastname.errors?.pattern">
+      Wrong symbol
+    </div>
+
+    <mat-form-field class="example-full-width, mail-field">
+      <mat-label>Email</mat-label>
+      <input
+        matInput
+        name="email"
+        required
+        pattern="^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})"
+        [(ngModel)]="data.email"
+        #mail="ngModel"
+        placeholder="Ex. pat@example.com"
+      />
+    </mat-form-field>
+    <div class="field-err" *ngIf="mail.errors?.pattern">
+      Enter a valid email address
+    </div>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input
+        type="password"
+        matInput
+        required
+        minlength="10"
+        [(ngModel)]="data.password"
+        name="password"
+        #password="ngModel"
+      />
+    </mat-form-field>
+    <div class="field-err" *ngIf="password.errors?.minlength">
+      Min length 10 symbols
+    </div>
+    <!-- --------------------------------------------------------------- -->
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input
+        type="password"
+        matInput
+        required
+        pattern="{{password.value}}"
+        [(ngModel)]="data.repeatPass"
+        name="repeatPass"
+        #repeatPass="ngModel"
+      />
+    </mat-form-field>
+    <!-- <p>{{repeatPass.value}}+{{password.value}}</p> -->
+    <div class="field-err" *ngIf="repeatPass.errors?.pattern">
+      No math password
+    </div>
+    <br />
+
+    <mat-radio-group
+      class="example-radio-group"
+      [(ngModel)]="data.sex"
+      name="sex"
+    >
+      <mat-radio-button value="Male">Male</mat-radio-button>
+      <mat-radio-button value="Female">Female</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field class="region">
+      <mat-label>Select region</mat-label>
+      <mat-select
+        [(ngModel)]="data.region"
+        name="region"
+        required
+        #region="ngModel"
+      >
+        <mat-option value="Kyiv">Kyiv</mat-option>
+        <mat-option value="Kharkov">Kharkov</mat-option>
+        <mat-option value="Cherkassy">Cherkassy</mat-option>
+        <mat-option value="Other">Other</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="field-err" *ngIf="region.errors?.required">
+      Required field
+    </div>
+
+    <button class="btn-form" type="submit">
+      Submit
+    </button>
+  </form>
+</div>

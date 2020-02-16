@@ -1,13 +1,3 @@
-<p>reactive-form works!</p>
-
-<!-- <form class="example-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>User Name</mat-label>
-    <input matInput formControlName="userName" placeholder="Ivan" />
-  </mat-form-field>
-</form>
-<br /> -->
-
 <div class="react-container">
   <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
     <fieldset formGroupName="user">
@@ -27,18 +17,34 @@
                 && (reactiveForm.controls.user.controls.userName.dirty
                 || reactiveForm.controls.user.controls.userName.touched)"
       >
-        error
+        wrong symbol
       </div>
 
       <mat-form-field class="example-full-width">
         <mat-label>First Name</mat-label>
         <input #user matInput formControlName="firstName" placeholder="Ivan" />
       </mat-form-field>
+      <div
+        class="field-err"
+        *ngIf="reactiveForm.controls.user.controls.firstName.invalid
+              && (reactiveForm.controls.user.controls.firstName.dirty
+              || reactiveForm.controls.user.controls.firstName.touched)"
+      >
+        wrong symbol
+      </div>
 
       <mat-form-field class="example-full-width">
         <mat-label>Last Name</mat-label>
         <input #user matInput formControlName="lastName" placeholder="Ivanov" />
       </mat-form-field>
+      <div
+        class="field-err"
+        *ngIf="reactiveForm.controls.user.controls.lastName.invalid
+              && (reactiveForm.controls.user.controls.lastName.dirty
+              || reactiveForm.controls.user.controls.lastName.touched)"
+      >
+        wrong symbol
+      </div>
     </fieldset>
 
     <mat-form-field class="example-full-width, mail-field">
@@ -48,13 +54,8 @@
         formControlName="email"
         placeholder="Ex. pat@example.com"
       />
-      <mat-error
-        *ngIf="reactiveForm.hasError('email') && !reactiveForm.hasError('required')"
-      >
-        Please enter a valid email address
-      </mat-error>
       <mat-error class="field-err" *ngIf="reactiveForm.controls.email.errors">
-        Email is <strong>required</strong>
+        Enter a valid email address
       </mat-error>
     </mat-form-field>
 
@@ -99,7 +100,6 @@
     </fieldset>
     <br />
 
-    <label id="example-radio-group-label"></label>
     <mat-radio-group formControlName="sex" class="example-radio-group">
       <mat-radio-button value="Male">Male</mat-radio-button>
       <mat-radio-button value="Female">Female</mat-radio-button>
