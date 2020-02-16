@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 const routes: Routes = [
   { path: "react", component: ReactiveFormComponent },
   { path: "driven", component: TemplateDrivenFormComponent },
-  { path: "", redirectTo: "/driben", pathMatch: "full" },
+  { path: "", redirectTo: "/driven", pathMatch: "full" },
   { path: "**", component: PageNotFoundComponent }
 ];
 

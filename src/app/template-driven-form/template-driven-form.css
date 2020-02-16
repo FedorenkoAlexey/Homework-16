@@ -26,3 +26,12 @@ div.field-err {
 .send-mail {
   margin-top: 20px;
 }
+
+.radio {
+  padding-right: 10px;
+  color: #fff;
+}
+
+.send-mail {
+  color: #fff;
+}

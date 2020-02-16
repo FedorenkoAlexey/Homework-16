@@ -27,6 +27,10 @@ export class ReactiveFormComponent implements OnInit {
     return this.reactiveForm.controls.pass;
   }
 
+  get User() {
+    return this.reactiveForm.controls.user;
+  }
+
   onSubmit() {
     console.warn(this.reactiveForm.value);
     this.reactiveForm.reset("");
@@ -53,7 +57,7 @@ export class ReactiveFormComponent implements OnInit {
             [Validators.required, Validators.pattern("^[0-9a-zA-Z]*$")]
           ]
         }),
-        email: ["", [Validators.required, Validators.email]],
+        email: ["", Validators.required],
         pass: this.fb.group({
           password: ["", Validators.minLength(10)],
           repeatPass: ["", Validators.required]

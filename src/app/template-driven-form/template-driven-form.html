@@ -89,7 +89,6 @@
         #repeatPass="ngModel"
       />
     </mat-form-field>
-    <!-- <p>{{repeatPass.value}}+{{password.value}}</p> -->
     <div class="field-err" *ngIf="repeatPass.errors?.pattern">
       No math password
     </div>
@@ -100,8 +99,8 @@
       [(ngModel)]="data.sex"
       name="sex"
     >
-      <mat-radio-button value="Male">Male</mat-radio-button>
-      <mat-radio-button value="Female">Female</mat-radio-button>
+      <mat-radio-button class="radio" value="Male">Male</mat-radio-button>
+      <mat-radio-button class="radio" value="Female">Female</mat-radio-button>
     </mat-radio-group>
 
     <mat-form-field class="region">
