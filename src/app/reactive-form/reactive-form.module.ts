@@ -1,4 +1,3 @@
-import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
@@ -9,15 +8,13 @@ import { MatCheckboxModule } from "@angular/material/checkbox";
 import { MatSelectModule } from "@angular/material/select";
 import { MatRadioModule } from "@angular/material/radio";
 
-import {
-  ErrorStateMatcher,
-  ShowOnDirtyErrorStateMatcher
-} from "@angular/material/core";
+import { CommonModule } from "@angular/common";
+import { ReactiveFormRoutingModule } from "./reactive-form.routing.module";
 
 @NgModule({
   declarations: [ReactiveFormComponent],
   imports: [
-    BrowserModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
@@ -26,10 +23,8 @@ import {
     MatSelectModule,
     MatRadioModule
   ],
-  exports: [ReactiveFormComponent, MatInputModule],
-  providers: [
-    // { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher }
-  ],
+  exports: [ReactiveFormComponent, ReactiveFormRoutingModule],
+  providers: [],
   bootstrap: []
 })
 export class ReactiveFormModule {}

@@ -7,7 +7,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: rgb(75, 116, 165);
+  background-color: rgb(87, 122, 163);
 }
 
 .active {
@@ -15,6 +15,13 @@ body {
   /* background-color: rgb(1, 83, 5); */
 }
 
+.lazy {
+  margin-left: 150px;
+  text-shadow: 0.7px 0.7px 5px rgb(111, 205, 236);
+}
+.lazy-txt {
+  color: rgb(8, 49, 102);
+}
 .head {
   display: flex;
   width: 500px;

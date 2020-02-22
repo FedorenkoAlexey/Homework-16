@@ -1,4 +1,3 @@
-import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { TemplateDrivenFormComponent } from "./template-driven-form.component";
@@ -6,16 +5,19 @@ import { MatInputModule } from "@angular/material/input";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatSelectModule } from "@angular/material/select";
 import { MatCheckboxModule } from "@angular/material/checkbox";
+import { TemplateDrivenFormRoutingModule } from "./template-driven-form.routing.module";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [TemplateDrivenFormComponent],
   imports: [
-    BrowserModule,
+    CommonModule,
     FormsModule,
     MatInputModule,
     MatRadioModule,
     MatSelectModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    TemplateDrivenFormRoutingModule
   ],
   exports: [TemplateDrivenFormComponent],
   providers: [],
